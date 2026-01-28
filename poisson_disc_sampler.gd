@@ -15,7 +15,7 @@ var active_neighbor_samples : PackedVector2Array
 var rng : RandomNumberGenerator
 
 ## Initializes the sampler[br]
-## See more:[br]
+## See more: https://github.com/HideyBoi/tileable-poisson-disk-sampler-godot/blob/main/README.md#initialization[br]
 ## Based on: http://gregschlom.com/devlog/2014/06/29/Poisson-disc-sampling-Unity.html
 func _init(poisson_radius: float, grid_size: Vector2i, pick_attempts: int = 64, rand: RandomNumberGenerator = null) -> void:
 	radius = poisson_radius
@@ -37,7 +37,8 @@ func _init(poisson_radius: float, grid_size: Vector2i, pick_attempts: int = 64, 
 		rng.randomize()
 
 ## Runs the algorithm. This function call is [b]slow[/b] and will take a while to complete.
-## You should be calling it in a separate thread or only during the initialization of a new level.
+## You should be calling it in a separate thread or only during the initialization of a new level.[br]
+## https://github.com/HideyBoi/tileable-poisson-disk-sampler-godot/blob/main/README.md#find_points---packedvector2array
 func find_points() -> PackedVector2Array:
 	# add initial sample
 	_add_sample(Vector2(rng.randf_range(0, size.x), rng.randf_range(0, size.y)))
@@ -106,6 +107,7 @@ func _is_valid(candidate: Vector2) -> bool:
 	return true
 
 ## Adds in neighboring points. The offset should be the relative position of the neighbor with respect to the calling node. Ex: [code]neighbor.global_position - self.global_position[/code]
+## [br]https://github.com/HideyBoi/tileable-poisson-disk-sampler-godot/blob/main/README.md#add_seamless_points
 func add_seamless_points(points: PackedVector2Array, offset: Vector2) -> void:
 	for point in points:
 		active_neighbor_samples.append(point + offset)
@@ -114,6 +116,7 @@ func add_seamless_points(points: PackedVector2Array, offset: Vector2) -> void:
 		# print(str(v2) + " real " + str(point + offset))
 
 ## Returns the edges of the internal grid. This should be passed into [code]add_seamless_points()[/code] with an offset to make use of seamless point generation.
+## [br]https://github.com/HideyBoi/tileable-poisson-disk-sampler-godot/blob/main/README.md#get_seamless_points---packedvector2array
 func get_seamless_points() -> PackedVector2Array:
 	var final : PackedVector2Array
 
