@@ -43,7 +43,7 @@ var sampler : PoissonDiscSampler
 
 func create_points() -> void:
 	# initialize sampler
-	sampler = PoissonDiscSampler.new(220, Vector2i(ChunkManager.CHUNK_SIZE, ChunkManager.CHUNK_SIZE), 16)
+	sampler = PoissonDiscSampler.new(220, Vector2i(1000, 1000), 16)
 
 	for neighbor in neighbors:
 		# calculate the offset between neighbors so that points are 
