@@ -17,7 +17,7 @@ Just put the `poisson_disc_sampler.gd` file anywhere in your Godot project and u
 ```gdscript
 func create() -> void:
 	# initialize sampler
-	var sampler = PoissonDiscSampler.new(30, Vector2i(ChunkManager.CHUNK_SIZE, ChunkManager.CHUNK_SIZE), 16)
+	var sampler = PoissonDiscSampler.new(30, Vector2i(1000, 1000), 16)
 
 	# calculate points
 	# this could take a really long time, so you should call this from a separate thread
